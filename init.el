@@ -34,6 +34,9 @@ We increase this to 16MB by `(my-optimize-gc 16 0.5)` "
                 gc-cons-percentage PER))
 
 
+                
+
+
 (require 'init-modeline)
 (require 'cl-lib)
 (require 'init-compat)
@@ -71,21 +74,20 @@ We increase this to 16MB by `(my-optimize-gc 16 0.5)` "
 (require 'init-helm)
 (require 'init-hippie-expand)
 (require 'init-windows)
-(require 'init-sessions)
+;(require 'init-sessions)
 (require 'init-git)
 (require 'init-crontab)
 (require 'init-markdown)
-(require 'init-erlang)
-(require 'init-javascript)
-(require 'init-org)
+;(require 'init-erlang)
+;(require 'init-javascript)
 (require 'init-org-mime)
-(require 'init-css)
-(require 'init-python-mode)
-(require 'init-haskell)
-(require 'init-ruby-mode)
-(require 'init-lisp)
-(require 'init-elisp)
-(require 'init-yasnippet)
+;(require 'init-css)
+;(require 'init-python-mode)
+;(require 'init-haskell)
+;(require 'init-ruby-mode)
+;(require 'init-lisp)
+;(require 'init-elisp)
+;(require 'init-yasnippet)
 ;; Use bookmark instead
 (require 'init-zencoding-mode)
 (require 'init-cc-mode)
@@ -104,12 +106,12 @@ We increase this to 16MB by `(my-optimize-gc 16 0.5)` "
 (require 'init-workgroups2)
 (require 'init-term-mode)
 (require 'init-web-mode)
-(require 'init-slime)
+;(require 'init-slime)
 (require 'init-clipboard)
 (require 'init-company)
 (require 'init-chinese-pyim) ;; cannot be idle-required
 ;; need statistics of keyfreq asap
-(require 'init-keyfreq)
+;(require 'init-keyfreq)
 (require 'init-httpd)
 
 ;; projectile costs 7% startup time
@@ -121,7 +123,8 @@ We increase this to 16MB by `(my-optimize-gc 16 0.5)` "
 
 ;; {{ idle require other stuff
 (setq idle-require-idle-delay 3)
-(setq idle-require-symbols '(init-misc-lazy
+(setq idle-require-symbols '(init-python-mode
+                             init-misc-lazy
                              init-which-func
                              init-fonts
                              init-hs-minor-mode
@@ -133,37 +136,67 @@ We increase this to 16MB by `(my-optimize-gc 16 0.5)` "
                              init-pomodoro
                              init-emacspeak
                              init-artbollocks-mode
-                             init-semantic))
+                             init-semantic
+                             init-slime
+                             init-keyfreq
+                             init-haskell
+                             init-ruby-mode
+                             init-elisp
+                             init-lisp
+                             init-css
+                             init-javascript
+                             ))
 (idle-require-mode 1) ;; starts loading
 ;; }}
 
-(when (require 'time-date nil t)
-   (message "Emacs startup time: %d seconds."
-    (time-to-seconds (time-since emacs-load-start-time))))
+;(when (require 'time-date nil t)
+;   (message "Emacs startup time: %d seconds."
+;    (time-to-seconds (time-since emacs-load-start-time))))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; codes of Chen Xiaoshuang
+(setq default-dir "~/materials")
+(setq copy-default-dir '("C:/Users/chenxs/Desktop" "C:/Users/chenxs/Downloads"))
+(setq inhibit-startup-screen t) 
+(run-with-idle-timer 0.5 nil 'w32-send-sys-command 61488)
+(require 'init-gui)
+(require 'init-org)
+(require 'init-orgTommy) ;forked from https://github.com/tommyjiang
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    
 ;;----------------------------------------------------------------------------
 ;; Locales (setting them earlier in this file doesn't work in X)
 ;;----------------------------------------------------------------------------
-(require 'init-locales)
+;(require 'init-locales)
 
 ;; my personal setup, other major-mode specific setup need it.
 ;; It's dependent on init-site-lisp.el
-(if (file-exists-p "~/.custom.el") (load-file "~/.custom.el"))
+;(if (file-exists-p "~/.custom.el") (load-file "~/.custom.el"))
 
-(custom-set-variables
+;(custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(safe-local-variable-values (quote ((lentic-init . lentic-orgel-org-init))))
- '(session-use-package t nil (session)))
-(custom-set-faces
+ ;'(safe-local-variable-values (quote ((lentic-init . lentic-orgel-org-init))))
+ ;'(session-use-package t nil (session)))
+ 
+ (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(window-numbering-face ((t (:foreground "DeepPink" :underline "DeepPink" :weight bold))) t))
+ '(window-numbering-face ((t (:foreground "DeepPink" :underline "DeepPink" :weight bold))) t)
+ '(org-agenda-date-today ((t (:inherit org-agenda-date :weight bold))) t)
+ '(org-agenda-date-weekend ((t (:inherit org-agenda-date :foreground "#F47983" :weight bold))) t)
+ ;'(org-mode-line-clock ((t (:foreground "red" :box (:line-width -1 :style released-button)))) t)
+ )
+
 ;;; Local Variables:
 ;;; no-byte-compile: t
 ;;; End:
 (put 'erase-buffer 'disabled nil)
+
+
+
