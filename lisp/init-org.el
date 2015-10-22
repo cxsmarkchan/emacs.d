@@ -1521,7 +1521,7 @@ Late deadlines first, then scheduled, then non-late deadlines"
     (add-to-list 'load-path org-mode-user-contrib-lisp-path)
   (add-to-list 'load-path (expand-file-name "~/git/org-mode/contrib/lisp")))
 
-(require 'org-checklist)
+;(require 'org-checklist)
 
 (setq org-enforce-todo-dependencies t)
 
