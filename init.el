@@ -1,5 +1,12 @@
 ;; -*- coding: utf-8 -*-
 
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (setq emacs-load-start-time (current-time))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
 
@@ -162,6 +169,8 @@ We increase this to 16MB by `(my-optimize-gc 16 0.5)` "
 (require 'init-gui)
 (require 'init-org)
 (require 'init-orgTommy) ;forked from https://github.com/tommyjiang
+(require 'copy-default)
+(require 'init-bib)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     

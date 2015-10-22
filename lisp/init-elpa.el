@@ -174,7 +174,9 @@ ARCHIVE is the string name of the package archive.")
     hc-zenburn-theme
     helm-themes
     hemisu-theme
-    heroku-theme)
+    heroku-theme
+    helm-bibtex
+    ebib)
   "Don't install any Melpa packages except these packages")
 
 ;; Don't take Melpa versions of certain packages
@@ -298,5 +300,10 @@ ARCHIVE is the string name of the package archive.")
 (require-package 'neotree)
 (require-package 'define-word)
 (require-package 'quack) ;; for scheme
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; required by Chen Xiaoshuang
+(require-package 'helm-bibtex)
+(require-package 'ebib)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (provide 'init-elpa)
