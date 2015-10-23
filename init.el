@@ -123,7 +123,7 @@ We increase this to 16MB by `(my-optimize-gc 16 0.5)` "
 ;; misc has some crucial tools I need immediately
 (require 'init-misc)
 (require 'init-color-theme)
-(require 'init-emacs-w3m)
+;(require 'init-emacs-w3m) ;no need of w3m in windows
 
 ;; {{ idle require other stuff
 (setq idle-require-idle-delay 3)
