@@ -173,7 +173,7 @@ We increase this to 16MB by `(my-optimize-gc 16 0.5)` "
 (load-library "matlab-load")
 (matlab-cedet-setup)
 (setq matlab-shell-command "~/.emacs.d/plugins/matlabshell/matlabShell.exe")
-(setq matlab-shell-command-switches '("500" "10000"))
+(setq matlab-shell-command-switches '("10000" "20000"))
 (setq matlab-shell-echoes nil)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -193,8 +193,8 @@ We increase this to 16MB by `(my-optimize-gc 16 0.5)` "
  ;; If there is more than one, they won't work right.
  ;'(safe-local-variable-values (quote ((lentic-init . lentic-orgel-org-init))))
  ;'(session-use-package t nil (session)))
- 
- 
+
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
