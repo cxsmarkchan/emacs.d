@@ -171,7 +171,10 @@ We increase this to 16MB by `(my-optimize-gc 16 0.5)` "
 (require 'init-orgTommy) ;forked from https://github.com/tommyjiang
 (require 'copy-default)
 (require 'init-bib)
-
+;matlab
+(add-to-list 'load-path "~/.emacs.d/lisp/matlab-emacs")
+(load-library "matlab-load")
+(matlab-cedet-setup)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     
 ;;----------------------------------------------------------------------------
@@ -191,18 +194,27 @@ We increase this to 16MB by `(my-optimize-gc 16 0.5)` "
  ;'(safe-local-variable-values (quote ((lentic-init . lentic-orgel-org-init))))
  ;'(session-use-package t nil (session)))
  
- (custom-set-faces
+ 
+(custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(window-numbering-face ((t (:foreground "DeepPink" :underline "DeepPink" :weight bold))) t)
  '(org-agenda-date-today ((t (:inherit org-agenda-date :weight bold))) t)
  '(org-agenda-date-weekend ((t (:inherit org-agenda-date :foreground "#F47983" :weight bold))) t)
- ;'(org-mode-line-clock ((t (:foreground "red" :box (:line-width -1 :style released-button)))) t)
- )
+ '(org-mode-line-clock ((t (:foreground "red" :box (:line-width -1 :style released-button)))) t)
+ '(window-numbering-face ((t (:foreground "DeepPink" :underline "DeepPink" :weight bold))) t))
 
-;;; Local Variables:
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(git-gutter:handled-backends (quote (svn hg git)))
+ '(package-selected-packages
+(quote
+ (yaml-mode yagist writeroom-mode wgrep w3m unfill textile-mode tagedit string-edit simple-httpd session scss-mode scratch sass-mode rvm robe rinari regex-tool rainbow-delimiters quack pomodoro pointback paredit page-break-lines neotree mwe-log-commands multiple-cursors multi-term move-text markdown-mode lua-mode link less-css-mode legalese json-mode js2-mode idomenu ibuffer-vc htmlize hl-sexp helm-bibtex haskell-mode guide-key groovy-mode gitignore-mode gitconfig-mode git-timemachine git-messenger git-link git-gutter ggtags fringe-helper flyspell-lazy flymake-sass flymake-ruby flymake-lua flymake-jslint flymake-css flymake-coffee flx-ido fakir expand-region exec-path-from-shell erlang emmet-mode elpy ebib dsvn dropdown-list dired-details dired+ diminish dictionary define-word csharp-mode crontab-mode cpputils-cmake connection company-c-headers color-theme coffee-mode cmake-mode cliphist buffer-move bookmark+ bbdb auto-compile ace-window))))
+ ;;; Local Variables:
 ;;; no-byte-compile: t
 ;;; End:
 (put 'erase-buffer 'disabled nil)
