@@ -224,7 +224,7 @@
   "gh" 'outline-up-heading
   "gl" 'outline-next-visible-heading
   "S" 'org-store-link
-  "A" 'org-agenda
+;  "A" 'org-agenda
   "H" 'org-beginning-of-line ; smarter behaviour on headlines etc.
   "L" 'org-end-of-line ; smarter behaviour on headlines etc.
   "$" 'org-end-of-line ; smarter behaviour on headlines etc.
