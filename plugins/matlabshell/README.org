@@ -1,0 +1,24 @@
+Edited by: Chen Xiaoshuang
+2015-10-23
+* 环境变量设置
+- 点击“计算机”->“属性”->“高级系统设置”->"环境变量"
+- 在系统变量中新建MATLAB_HOME，对应你的matlab安装目录。例如：D:\Program Files\MATLAB\R2015a
+- 在系统变量中找到Path，点击编辑，在后面添加如下字符串
+”;%MATLAB_HOME%\bin;%MATLAB_HOME%\bin\win64“(注意分号不能省略)
+注：该方式针对matlab为64位的操作系统，若为32位系统，则win64应改成win32.
+* 生成matlabShell.exe
+- 用编辑模式打开linkit.bat
+- 其中第二行引号内的部分，请按如下方式修改：
+文件名：msvc**engmatopts.bat, **部分请参照你的电脑中VS的版本，若为VS2010，则为msvc100engmatopts.bat
+路径：在matlab安装目录中搜索该文件，并修改路径
+- 保存并执行linkit.bat，如果顺利，在当前目录下会生成matlabshell.exe
+* matlabShell使用方法
+- 如果是第一次使用，请用管理员模式运行regmatlab.bat
+- 如果是用 https://github.com/cxsmarkchan/emacs.d 的配置，则直接打开matlab的脚本文件(*.m)
+- 在当前buffer中会有MATLAB菜单，点击MATLAB->start MATLAB，或用命令M-x matlab-shell启动shell
+- 其余操作和快捷键可在MATLAB菜单下找到.
+- 如果是自己配置的emacs-matlab插件，请在init.el中添加如下语句：
+(setq matlab-shell-command "path/to/matlabShell.exe")
+(setq matlab-shell-command-switches '("500" "10000"))
+(setq matlab-shell-echoes nil)
+

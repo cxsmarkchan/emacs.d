@@ -41,9 +41,6 @@ We increase this to 16MB by `(my-optimize-gc 16 0.5)` "
                 gc-cons-percentage PER))
 
 
-                
-
-
 (require 'init-modeline)
 (require 'cl-lib)
 (require 'init-compat)
@@ -164,7 +161,7 @@ We increase this to 16MB by `(my-optimize-gc 16 0.5)` "
 ; codes of Chen Xiaoshuang
 (setq default-dir "~/materials")
 (setq copy-default-dir '("C:/Users/chenxs/Desktop" "C:/Users/chenxs/Downloads"))
-(setq inhibit-startup-screen t) 
+(setq inhibit-startup-screen t)
 (run-with-idle-timer 0.5 nil 'w32-send-sys-command 61488)
 (require 'init-gui)
 (require 'init-org)
@@ -175,8 +172,11 @@ We increase this to 16MB by `(my-optimize-gc 16 0.5)` "
 (add-to-list 'load-path "~/.emacs.d/lisp/matlab-emacs")
 (load-library "matlab-load")
 (matlab-cedet-setup)
+(setq matlab-shell-command "~/.emacs.d/plugins/matlabshell/matlabShell.exe")
+(setq matlab-shell-command-switches '("500" "10000"))
+(setq matlab-shell-echoes nil)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    
+
 ;;----------------------------------------------------------------------------
 ;; Locales (setting them earlier in this file doesn't work in X)
 ;;----------------------------------------------------------------------------

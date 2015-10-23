@@ -54,3 +54,4 @@ projectile.cache
 .orig
 .unpacked
 /srecode-map.el
+/plugins/matlabshell/*.exe
