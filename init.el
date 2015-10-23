@@ -127,7 +127,8 @@ We increase this to 16MB by `(my-optimize-gc 16 0.5)` "
 
 ;; {{ idle require other stuff
 (setq idle-require-idle-delay 3)
-(setq idle-require-symbols '(init-python-mode
+(setq idle-require-symbols '(init-matlab
+                             init-python-mode
                              init-misc-lazy
                              init-which-func
                              init-fonts
@@ -168,13 +169,6 @@ We increase this to 16MB by `(my-optimize-gc 16 0.5)` "
 (require 'init-orgTommy) ;forked from https://github.com/tommyjiang
 (require 'copy-default)
 (require 'init-bib)
-;matlab
-(add-to-list 'load-path "~/.emacs.d/lisp/matlab-emacs")
-(load-library "matlab-load")
-(matlab-cedet-setup)
-(setq matlab-shell-command "~/.emacs.d/plugins/matlabshell/matlabShell.exe")
-(setq matlab-shell-command-switches '("10000" "20000"))
-(setq matlab-shell-echoes nil)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;----------------------------------------------------------------------------
