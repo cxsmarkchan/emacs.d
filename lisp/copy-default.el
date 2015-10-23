@@ -4,6 +4,10 @@
   "List of default directories for searching"
   :group 'copy-default)
 
+(defcustom path-to-irfanview nil
+  "path to irfanview"
+  :group 'copy-default)
+
 (defun cut-from-default (file todir)
     "cut from default directory defined in copy-default-dir"
     (cut-from file copy-default-dir todir))
@@ -17,5 +21,26 @@
                 (delete-file (concat (car fromdir) "/" file))
 				(concat (car fromdir) "/" file))
             (cut-from file (cdr fromdir) todir))))
-            
+
+(defun org-insert-clipboard-image-name (file-name-prefix)
+  (let* ((num (random t))
+         (image-file
+          (concat file-name-prefix "_" (format "%d" num) ".png")))
+    (if (file-exists-p image-file)
+        (org-insert-clipboard-image-name file-name-prefix)
+      image-file)))
+
+ (defun org-insert-clipboard-image ()
+   "将剪切板中的图像插入到org中"
+   (interactive)
+   (let* ((file-name-prefix
+           (concat "img\\" (file-name-base (buffer-file-name))))
+           (image-file (org-insert-clipboard-image-name file-name-prefix))
+          (exit-status
+           (call-process path-to-irfanview nil nil nil
+                         (concat "/clippaste /convert=" image-file))))
+     (org-insert-link nil (concat "file:" image-file) "")))
+
+(global-set-key (kbd "<f10> p") 'org-insert-clipboard-image)
+
 (provide 'copy-default)

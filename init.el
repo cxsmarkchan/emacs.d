@@ -162,6 +162,7 @@ We increase this to 16MB by `(my-optimize-gc 16 0.5)` "
 ; codes of Chen Xiaoshuang
 (setq default-dir "~/materials")
 (setq copy-default-dir '("C:/Users/chenxs/Desktop" "C:/Users/chenxs/Downloads"))
+(setq path-to-irfanview "d:/Program Files/iview440/i_view64.exe")
 (setq inhibit-startup-screen t)
 (run-with-idle-timer 0.5 nil 'w32-send-sys-command 61488)
 (require 'init-gui)
