@@ -41,6 +41,7 @@
                          (concat "/clippaste /convert=" image-file))))
      (org-insert-link nil (concat "file:" image-file) "")))
 
+(global-unset-key (kbd "<f10>"))
 (global-set-key (kbd "<f10> p") 'org-insert-clipboard-image)
 
 (provide 'copy-default)
