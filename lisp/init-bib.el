@@ -1,7 +1,6 @@
 ;bibtex & ebib
 
 (require 'copy-default)
-(require 'ebib)
 (autoload 'helm-bibtex "helm-bibtex" "" t)
 ;(require 'helm-bibtex)报错，不知道为什么
 
@@ -12,19 +11,24 @@
   "directory of bibtex"
   :group 'init-bib)
 
+(defcustom init-bib-preload-files-list nil
+  "list of bibtex files, with no path, since the path is defined in init-bib-dir"
+  :group 'init-bib)
+
+
 ;ebib链接
-(org-add-link-type "ebib" 'ebib)
+(org-add-link-type "ebib" 'ebib-open-org-link)
 
+(setq bib-preload-path-file-list
+      (map 'list'
+           (lambda (file-name) (concat init-bib-dir "/" file-name))
+           init-bib-preload-files-list))
 ;ebib路径
-(setq ebib-preload-bib-files (list (concat init-bib-dir "/PhD.bib")))
-
-;设置bibtex打开pdf的方式，有绝对路径
-(setq helm-bibtex-pdf-open-function
-	(lambda (fpath)
-		(start-process "AcroRd32" "*AcroRd32*" "D:/Program Files (x86)/Adobe/Reader 11.0/Reader/AcroRd32.exe" fpath)))
+(setq ebib-preload-bib-files bib-preload-path-file-list)
 
 ;set bibtex file info
-(setq helm-bibtex-bibliography (list (concat init-bib-dir "/PhD.bib")))
+(setq helm-bibtex-bibliography bib-preload-path-file-list)
+
 (setq helm-bibtex-library-path (list (concat init-bib-dir "/pdf")))
 (setq helm-bibtex-notes-path (concat init-bib-dir "/notes"))
 (setq helm-bibtex-notes-extension ".org")
@@ -42,24 +46,24 @@
           (--map (concat
                 "[[helm-bibtex:"
                 it
-                "][" 
+                "]["
                 (helm-bibtex-get-value "title" (helm-bibtex-get-entry it))
                 "]]") keys)))
-          
-          
+
+
 (setq helm-bibtex-format-citation-functions
   '((org-mode      . helm-bibtex-format-citation-helm-bibtex)
     (latex-mode    . helm-bibtex-format-citation-cite)
     (markdown-mode . helm-bibtex-format-citation-pandoc-citeproc)
     (default       . helm-bibtex-format-citation-default)))
 ;set org mode link
-(org-add-link-type "helm-bibtex" 
+(org-add-link-type "helm-bibtex"
 	(lambda (key)
 		(helm :sources '(helm-source-bibtex)
 			:full-frame t
 			:input key
 			:candidate-number-limit 500)))
-			
+
 
 
 ;set icon
@@ -69,12 +73,12 @@
 ;在状态栏显示简要的note，即note文件的第一行。
 (defun helm-bibtex-show-note (&optional complete-file link-location default-description)
     (interactive "P")
-    
+
     (defun read-first-line (file)
         (with-temp-buffer
             (insert-file-contents file)
             (car (split-string (buffer-string) "\n" t))))
-            
+
     ;获得helm-bibtex引用的key
     (if (org-in-regexp org-bracket-link-regexp 1)
         (progn
@@ -92,8 +96,8 @@
                         (user-error "NOT helm-bibtex format")))
                 (user-error "NOT helm-bibtex format")))
         (user-error "no links found.")))
-        
-        
+
+
 ;向剪切板中放入bibtex entry信息
 (defun helm-bibtex-copy-bibtex (_)
   "Copy BibTeX entry."
@@ -117,7 +121,7 @@
   "Open the PDFs associated with the marked entries using the
 function specified in `helm-bibtex-pdf-open-function'.  All paths
 in `helm-bibtex-library-path' are searched.  If there are several
-matching PDFs for an entry, the first is opened. 
+matching PDFs for an entry, the first is opened.
 If there are no matching PDFs, but there is a matching PDF in `default-dir',
 move the PDF into the first directory of `helm-bibtex-library-path'"
   (--if-let
@@ -139,7 +143,7 @@ move the PDF into the first directory of `helm-bibtex-library-path'"
 	(helm-delete-action-from-source "Open PDF file (if present)" helm-source-bibtex)
 	(helm-add-action-to-source "Open PDF file (if present)" 'helm-bibtex-open-or-move helm-source-bibtex 0)
     (helm-delete-action-from-source "Show Entry In Ebib" helm-source-bibtex)
-    (helm-add-action-to-source "Show Entry In Ebib" 'ebib helm-source-bibtex 9)
+    (helm-add-action-to-source "Show Entry In Ebib" 'ebib-open-org-link helm-source-bibtex 9)
     (helm-delete-action-from-source "Copy Reference to ClipBoard" helm-source-bibtex)
     (helm-add-action-to-source "Copy Reference to ClipBoard" 'helm-bibtex-copy-reference helm-source-bibtex 10)
     (helm-delete-action-from-source "Copy Bibtex Entry to ClipBoard" helm-source-bibtex)
@@ -151,7 +155,7 @@ move the PDF into the first directory of `helm-bibtex-library-path'"
     (ebib-import)
     (ebib-save-current-database)
     )
-    
+
 (defun ebib-import-and-insert ()
     "将剪切板中的信息添加到bibtex数据库中，将copy-default-dir中的相应文件剪切到pdf文件夹下，并在当前位置粘贴格式化引用信息[[helm-bibtex:key][title]]"
     (interactive)
