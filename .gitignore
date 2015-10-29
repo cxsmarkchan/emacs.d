@@ -57,3 +57,4 @@ projectile.cache
 /plugins/matlabshell/*.exe
 /auctex
 /bookmarks
+/server/server

@@ -162,6 +162,9 @@ We increase this to 16MB by `(my-optimize-gc 16 0.5)` "
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; codes of Chen Xiaoshuang
 
+; emacs server
+(server-start)
+
 ;;directories and executable files
 (setq default-dir "~/materials")
 (setq copy-default-dir '("C:/Users/chenxs/Desktop" "C:/Users/chenxs/Downloads"))
@@ -173,6 +176,8 @@ We increase this to 16MB by `(my-optimize-gc 16 0.5)` "
 (setq init-bib-preload-files-list '("PhD.bib"))
 ;设置md5工具，用于org-mobile
 (setq org-mobile-checksum-binary (executable-find "d:/Program Files (x86)/md5sums/md5sums.exe"))
+;SumatraPDF路径，用于支持auctex正反向搜索
+(setq init-auctex-sumatra-path "D:/Program Files/SumatraPDF/SumatraPDF.exe")
 
 (setq inhibit-startup-screen t)
 (run-with-idle-timer 0.5 nil 'w32-send-sys-command 61488)
