@@ -171,6 +171,8 @@ We increase this to 16MB by `(my-optimize-gc 16 0.5)` "
 	(lambda (fpath)
 		(start-process "AcroRd32" "*AcroRd32*" "D:/Program Files (x86)/Adobe/Reader 11.0/Reader/AcroRd32.exe" fpath)))
 (setq init-bib-preload-files-list '("PhD.bib"))
+;设置md5工具，用于org-mobile
+(setq org-mobile-checksum-binary (executable-find "d:/Program Files (x86)/md5sums/md5sums.exe"))
 
 (setq inhibit-startup-screen t)
 (run-with-idle-timer 0.5 nil 'w32-send-sys-command 61488)
@@ -192,7 +194,10 @@ We increase this to 16MB by `(my-optimize-gc 16 0.5)` "
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(bmkp-last-as-first-bookmark-file "~/.emacs.d/bookmarks")
- '(git-gutter:handled-backends (quote (svn hg git))))
+ '(git-gutter:handled-backends (quote (svn hg git)))
+ '(package-selected-packages
+   (quote
+    (yaml-mode yagist writeroom-mode wgrep w3m unfill textile-mode tagedit string-edit simple-httpd session scss-mode scratch sass-mode rvm robe rinari regex-tool rainbow-delimiters quack pomodoro pointback paredit page-break-lines neotree mwe-log-commands multiple-cursors multi-term move-text markdown-mode lua-mode link less-css-mode legalese json-mode js2-mode idomenu ibuffer-vc htmlize hl-sexp helm-bibtex haskell-mode guide-key groovy-mode gitignore-mode gitconfig-mode git-timemachine git-messenger git-link git-gutter ggtags fringe-helper flyspell-lazy flymake-sass flymake-ruby flymake-lua flymake-jslint flymake-css flymake-coffee flx-ido fakir expand-region exec-path-from-shell erlang emmet-mode elpy ebib dsvn dropdown-list dired-details dired+ diminish dictionary define-word csharp-mode crontab-mode cpputils-cmake connection company-c-headers color-theme coffee-mode cmake-mode cliphist buffer-move bookmark+ bbdb auto-compile ace-window))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

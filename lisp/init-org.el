@@ -8,6 +8,12 @@
   "directory of org files"
   :group 'init-org)
 
+(defcustom org-mobile-directory (concat org-directory "/mobile")
+  "directory for MobileOrg"
+  :group 'org-mobile)
+
+(setq org-mobile-inbox-for-pull (concat org-directory "/Refile.org"))
+
 ;;; Org Mode
 ; (add-to-list 'load-path (expand-file-name "~/git/org-mode/lisp"))
 (require 'org)
