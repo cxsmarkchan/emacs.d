@@ -69,7 +69,7 @@ We increase this to 16MB by `(my-optimize-gc 16 0.5)` "
 (require 'init-spelling)
 (require 'init-xterm)
 (require 'init-gui-frames)
-;(require 'init-ido)
+(require 'init-ido)
 (require 'init-dired)
 (require 'init-uniquify)
 (require 'init-ibuffer)
@@ -82,8 +82,6 @@ We increase this to 16MB by `(my-optimize-gc 16 0.5)` "
 (require 'init-git)
 (require 'init-crontab)
 (require 'init-markdown)
-;(require 'init-erlang)
-;(require 'init-javascript)
 ;(require 'init-org-mime)
 ;; Use bookmark instead
 (require 'init-zencoding-mode)
