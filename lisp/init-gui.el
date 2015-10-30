@@ -34,6 +34,7 @@
 (prefer-coding-system 'gb2312)
 (prefer-coding-system 'utf-8)
 
+(setq system-time-locale nil)
 ; Display line number
 ;(global-linum-mode t)
 
