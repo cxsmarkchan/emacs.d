@@ -127,7 +127,8 @@ We increase this to 16MB by `(my-optimize-gc 16 0.5)` "
 
 ;; {{ idle require other stuff
 (setq idle-require-idle-delay 5)
-(setq idle-require-symbols '(init-auctex
+(setq idle-require-symbols '(init-bib
+                             init-auctex
                              init-matlab
                              init-python-mode
                              init-misc-lazy
@@ -185,7 +186,6 @@ We increase this to 16MB by `(my-optimize-gc 16 0.5)` "
 (require 'init-org)
 (require 'init-orgTommy) ;forked from https://github.com/tommyjiang
 (require 'copy-default)
-(require 'init-bib)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;----------------------------------------------------------------------------

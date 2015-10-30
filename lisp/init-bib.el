@@ -2,7 +2,6 @@
 
 (require 'copy-default)
 (autoload 'helm-bibtex "helm-bibtex" "" t)
-;(require 'helm-bibtex)报错，不知道为什么
 
 (defcustom default-dir "~"
   "default directory")
@@ -136,18 +135,16 @@ move the PDF into the first directory of `helm-bibtex-library-path'"
 		(message "No PDF(s) found."))))
 
 ;在执行helm-bibtex的时候，在默认选项中添加Show Entry in Ebib选项，快捷键是<f10>，可以直接link到ebib中该关键字的编辑部分
-;没办法直接在载入的时候添加该信息，错误提示：helm-source-bibtex is void.只有在软件中执行过一次helm-bibtex后，该变量才会被加载。
-(defun helm-bibtex-to-ebib ()
-    (interactive)
-    (helm-bibtex)
-	(helm-delete-action-from-source "Open PDF file (if present)" helm-source-bibtex)
-	(helm-add-action-to-source "Open PDF file (if present)" 'helm-bibtex-open-or-move helm-source-bibtex 0)
-    (helm-delete-action-from-source "Show Entry In Ebib" helm-source-bibtex)
-    (helm-add-action-to-source "Show Entry In Ebib" 'ebib-open-org-link helm-source-bibtex 9)
-    (helm-delete-action-from-source "Copy Reference to ClipBoard" helm-source-bibtex)
-    (helm-add-action-to-source "Copy Reference to ClipBoard" 'helm-bibtex-copy-reference helm-source-bibtex 10)
-    (helm-delete-action-from-source "Copy Bibtex Entry to ClipBoard" helm-source-bibtex)
-    (helm-add-action-to-source "Copy Bibtex Entry to ClipBoard" 'helm-bibtex-copy-bibtex helm-source-bibtex 11))
+(eval-after-load 'helm-bibtex
+    '(progn
+        (helm-delete-action-from-source "Open PDF file (if present)" helm-source-bibtex)
+        (helm-add-action-to-source "Open PDF file (if present)" 'helm-bibtex-open-or-move helm-source-bibtex 0)
+        (helm-delete-action-from-source "Show Entry In Ebib" helm-source-bibtex)
+        (helm-add-action-to-source "Show Entry In Ebib" 'ebib-open-org-link helm-source-bibtex 9)
+        (helm-delete-action-from-source "Copy Reference to ClipBoard" helm-source-bibtex)
+        (helm-add-action-to-source "Copy Reference to ClipBoard" 'helm-bibtex-copy-reference helm-source-bibtex 10)
+        (helm-delete-action-from-source "Copy Bibtex Entry to ClipBoard" helm-source-bibtex)
+        (helm-add-action-to-source "Copy Bibtex Entry to ClipBoard" 'helm-bibtex-copy-bibtex helm-source-bibtex 11)))
 
 ;ebib导入文献信息
 (defun ebib-import-and-save ()
@@ -171,7 +168,7 @@ move the PDF into the first directory of `helm-bibtex-library-path'"
 
 ;set key
 (global-unset-key (kbd "<f10>"))
-(global-set-key (kbd "<f10> h") 'helm-bibtex-to-ebib)
+(global-set-key (kbd "<f10> h") 'helm-bibtex)
 (global-set-key (kbd "<f10> e") 'ebib)
 (global-set-key (kbd "<f10> i") 'ebib-import-and-save)
 (global-set-key (kbd "<f10> o") 'ebib-import-and-insert)
@@ -180,6 +177,5 @@ move the PDF into the first directory of `helm-bibtex-library-path'"
 ;启动一次ebib和helm-bibtex，用于初始化
 (ebib)
 (ebib-leave-ebib-windows)
-(helm-bibtex-to-ebib)
 
 (provide 'init-bib)
