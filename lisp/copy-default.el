@@ -8,6 +8,11 @@
   "path to irfanview"
   :group 'copy-default)
 
+(defun copy-to-default-dir (file default-name)
+  (copy-file file
+             (concat (car copy-default-dir) "/"
+                     (read-string "File Name: " default-name))))
+
 (defun cut-from-default (file todir)
     "cut from default directory defined in copy-default-dir"
     (cut-from file copy-default-dir todir))

@@ -134,11 +134,23 @@ move the PDF into the first directory of `helm-bibtex-library-path'"
           (-each it helm-bibtex-pdf-open-function))
 		(message "No PDF(s) found."))))
 
+(defun copy-pdf-to-default-dir (_)
+  "copy PDF asscociated with the marked entries to the first element
+of default directory, and rename it by the `title' of bibtex"
+  (let* ((key (car (helm-marked-candidates :with-wildcard t)))
+         (file (helm-bibtex-find-pdf key))
+         (title (helm-bibtex-get-value "title" (helm-bibtex-get-entry key)))
+         (toname (concat title ".pdf")))
+    (copy-to-default-dir file toname))
+  )
+
 ;在执行helm-bibtex的时候，在默认选项中添加Show Entry in Ebib选项，快捷键是<f10>，可以直接link到ebib中该关键字的编辑部分
 (eval-after-load 'helm-bibtex
     '(progn
         (helm-delete-action-from-source "Open PDF file (if present)" helm-source-bibtex)
         (helm-add-action-to-source "Open PDF file (if present)" 'helm-bibtex-open-or-move helm-source-bibtex 0)
+        (helm-delete-action-from-source "Show Entry" helm-source-bibtex)
+        (helm-add-action-to-source "Copy to Default Directory" 'copy-pdf-to-default-dir helm-source-bibtex 8)
         (helm-delete-action-from-source "Show Entry In Ebib" helm-source-bibtex)
         (helm-add-action-to-source "Show Entry In Ebib" 'ebib-open-org-link helm-source-bibtex 9)
         (helm-delete-action-from-source "Copy Reference to ClipBoard" helm-source-bibtex)
