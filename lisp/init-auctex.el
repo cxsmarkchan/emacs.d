@@ -4,12 +4,11 @@
     "path of sumatra"
     :group 'init-auctex)
 (add-to-list 'load-path
-             "~/.emacs.d/lisp/auctex/share/emacs/site-lisp/site-start.d")
+             "~/.emacs.d/auctex/share/emacs/site-lisp/site-start.d")
 (load "auctex.el" nil t t)
 (load "preview-latex.el" nil t t)
 (if (string-equal system-type "windows-nt")
     (require 'tex-mik))
-    
 
 
 ;; run latex compiler with option -shell-escape
