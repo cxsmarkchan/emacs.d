@@ -118,13 +118,13 @@
 
 ; Todo State Triggers
 (setq org-todo-state-tags-triggers
-      (quote (("CANCELLED" ("CANCELLED" . t))
-              ("WAITING" ("WAITING" . t))
-              ("HOLD" ("WAITING") ("HOLD" . t))
-              (done ("WAITING") ("HOLD"))
-              ("TODO" ("WAITING") ("CANCELLED") ("HOLD"))
-              ("NEXT" ("WAITING") ("CANCELLED") ("HOLD"))
-              ("DONE" ("WAITING") ("CANCELLED") ("HOLD")))))
+      (quote (("CANCELLED" ("cancelled" . t))
+              ("WAITING" ("waiting" . t))
+              ("HOLD" ("waiting") ("hold" . t))
+              (done ("hold") ("hold"))
+              ("TODO" ("waiting") ("cancelled") ("hold"))
+              ("NEXT" ("waiting") ("cancelled") ("hold"))
+              ("DONE" ("waiting") ("cancelled") ("hold")))))
 
 (setq org-default-notes-file (concat org-directory "/Refile.org"))
 
@@ -460,10 +460,10 @@ A prefix arg forces clock in of the default task."
 (setq org-tag-alist (quote (("工作" . ?g)
                             ("家庭" . ?j)
                             ("读书" . ?d)
-                            ("CANCELLED" . ?c)
-                            ("WAITING" . ?w)
-                            ("HOLD" . ?h)
-                            ("FLAGGED" . ??))))
+                            ("cancelled" . ?c)
+                            ("waiting" . ?w)
+                            ("hold" . ?h)
+                            ("flagged" . ??))))
 
 ; Allow setting single tags without the menu
 (setq org-fast-tag-selection-single-key (quote expert))
@@ -601,7 +601,7 @@ Callers of this function already widen the buffer view."
             (save-excursion
               (forward-line 1)
               (while (and (not has-next) (< (point) subtree-end) (re-search-forward "^\\*+ NEXT " subtree-end t))
-                (unless (member "WAITING" (org-get-tags-at))
+                (unless (member "waiting" (org-get-tags-at))
                   (setq has-next t))))
             (if has-next
                 nil
@@ -620,7 +620,7 @@ Callers of this function already widen the buffer view."
             (save-excursion
               (forward-line 1)
               (while (and (not has-next) (< (point) subtree-end) (re-search-forward "^\\*+ NEXT " subtree-end t))
-                (unless (member "WAITING" (org-get-tags-at))
+                (unless (member "waiting" (org-get-tags-at))
                   (setq has-next t))))
             (if has-next
                 next-headline
@@ -665,7 +665,7 @@ Callers of this function already widen the buffer view."
        ((org-is-habit-p)
         next-headline)
        ((and bh/hide-scheduled-and-waiting-next-tasks
-             (member "WAITING" (org-get-tags-at)))
+             (member "waiting" (org-get-tags-at)))
         next-headline)
        ((bh/is-project-p)
         next-headline)
