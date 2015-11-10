@@ -131,8 +131,8 @@
     (format "%4d年%d月%d日 第%2d周 %s"
       year month day iso-week (nth day-of-week chinese-dayname))))
 
-; Look ahead for 3 days
-(setq org-agenda-span 3)
+; Look ahead for 7 days
+(setq org-agenda-span 8)
 
 ; Org Agenda faces
 (custom-set-faces
