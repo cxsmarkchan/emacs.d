@@ -75,7 +75,7 @@
 
 ; org agenda views
 (setq org-agenda-sorting-strategy
-      (quote ((agenda time-up priority-down deadline-up habit-up category-keep)
+      (quote ((agenda time-up habit-up priority-down deadline-up category-keep)
               (todo priority-down category-up effort-up))))
 
 ; Ledger template using org capture
