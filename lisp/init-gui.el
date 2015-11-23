@@ -1,10 +1,13 @@
 ; Set default Font
+;(when *linux*
 ;(set-face-attribute
-;'default nil :font "Yahei Consolas Hybrid 18")
+;'default nil :font "Yahei Consolas Hybrid 18"))
+(when *win32*
 (set-face-attribute
-'default nil :font "文泉驿等宽正黑 18")
-;(set-face-attribute
-;'default nil :font "Inconsolata 24")
+'default nil :font "文泉驿等宽正黑 18"))
+(when *linux*
+(set-face-attribute
+'default nil :font "Inconsolata 18"))
 ;(when *is-mac*
 ;  (set-face-attribute
 ;    'default nil :font "Inconsolata 24"))
