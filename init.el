@@ -175,10 +175,14 @@ We increase this to 16MB by `(my-optimize-gc 16 0.5)` "
 (require 'init-gui)
 (require 'init-org)
 (require 'init-orgTommy) ;forked from https://github.com/tommyjiang
+(require 'init-orgMark)
 (require 'copy-default)
+;org mobile
+(org-mobile-pull)
 (run-at-time "15 min" 900 'org-mobile-push)
 (defadvice save-buffers-kill-emacs (before update-mod-flag activate)
     (org-mobile-push))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;----------------------------------------------------------------------------
