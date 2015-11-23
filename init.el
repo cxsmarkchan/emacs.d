@@ -157,6 +157,7 @@ We increase this to 16MB by `(my-optimize-gc 16 0.5)` "
 (server-start)
 
 ;;directories and executable files
+(when *win32* (progn
 (setq default-dir "~/materials")
 (setq copy-default-dir '("C:/Users/chenxs/Desktop" "C:/Users/chenxs/Downloads"))
 (setq path-to-irfanview "d:/Program Files/iview440/i_view64.exe")
@@ -168,7 +169,14 @@ We increase this to 16MB by `(my-optimize-gc 16 0.5)` "
 ;设置md5工具，用于org-mobile
 (setq org-mobile-checksum-binary (executable-find "d:/Program Files (x86)/md5sums/md5sums.exe"))
 ;SumatraPDF路径，用于支持auctex正反向搜索
-(setq init-auctex-sumatra-path "D:/Program Files/SumatraPDF/SumatraPDF.exe")
+(setq init-auctex-sumatra-path "D:/Program Files/SumatraPDF/SumatraPDF.exe")))
+
+(when *linux* (progn
+(add-to-list 'load-path (expand-file-name "~/git/org-mode/lisp"))
+(setq default-dir "~/materials")
+(setq copy-default-dir '("~/Downloads"))
+(setq init-bib-preload-files-list '("phd.bib"))
+))
 
 (setq inhibit-startup-screen t)
 (run-with-idle-timer 0.5 nil 'w32-send-sys-command 61488)
@@ -193,17 +201,15 @@ We increase this to 16MB by `(my-optimize-gc 16 0.5)` "
  ;; If there is more than one, they won't work right.
  '(bmkp-last-as-first-bookmark-file "~/.emacs.d/bookmarks")
  '(git-gutter:handled-backends (quote (svn hg git)))
- '(package-selected-packages
-   (quote
-    (yaml-mode yagist writeroom-mode wgrep w3m unfill textile-mode tagedit string-edit simple-httpd session scss-mode scratch sass-mode rvm robe rinari regex-tool rainbow-delimiters quack pomodoro pointback paredit page-break-lines neotree mwe-log-commands multiple-cursors multi-term move-text markdown-mode lua-mode link less-css-mode legalese json-mode js2-mode idomenu ibuffer-vc htmlize hl-sexp helm-bibtex haskell-mode guide-key groovy-mode gitignore-mode gitconfig-mode git-timemachine git-messenger git-link git-gutter ggtags fringe-helper flyspell-lazy flymake-sass flymake-ruby flymake-lua flymake-jslint flymake-css flymake-coffee flx-ido fakir expand-region exec-path-from-shell erlang emmet-mode elpy ebib dsvn dropdown-list dired-details dired+ diminish dictionary define-word csharp-mode crontab-mode cpputils-cmake connection company-c-headers color-theme coffee-mode cmake-mode cliphist buffer-move bookmark+ bbdb auto-compile ace-window))))
+ '(package-selected-packages (quote (yaml-mode yagist writeroom-mode wgrep w3m unfill textile-mode tagedit string-edit simple-httpd session scss-mode scratch sass-mode rvm robe rinari regex-tool rainbow-delimiters quack pomodoro pointback paredit page-break-lines neotree mwe-log-commands multiple-cursors multi-term move-text markdown-mode lua-mode link less-css-mode legalese json-mode js2-mode idomenu ibuffer-vc htmlize hl-sexp helm-bibtex haskell-mode guide-key groovy-mode gitignore-mode gitconfig-mode git-timemachine git-messenger git-link git-gutter ggtags fringe-helper flyspell-lazy flymake-sass flymake-ruby flymake-lua flymake-jslint flymake-css flymake-coffee flx-ido fakir expand-region exec-path-from-shell erlang emmet-mode elpy ebib dsvn dropdown-list dired-details dired+ diminish dictionary define-word csharp-mode crontab-mode cpputils-cmake connection company-c-headers color-theme coffee-mode cmake-mode cliphist buffer-move bookmark+ bbdb auto-compile ace-window))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-date-today ((t (:inherit org-agenda-date :weight bold))) t)
- '(org-agenda-date-weekend ((t (:inherit org-agenda-date :foreground "#F47983" :weight bold))) t)
- '(org-mode-line-clock ((t (:foreground "red" :box (:line-width -1 :style released-button)))) t)
+ '(org-agenda-date-today ((t (:inherit org-agenda-date :weight bold))))
+ '(org-agenda-date-weekend ((t (:inherit org-agenda-date :foreground "#F47983" :weight bold))))
+ '(org-mode-line-clock ((t (:foreground "red" :box (:line-width -1 :style released-button)))))
  '(window-numbering-face ((t (:foreground "DeepPink" :underline "DeepPink" :weight bold))) t))
  ;;; Local Variables:
 ;;; no-byte-compile: t
