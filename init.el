@@ -174,7 +174,10 @@ We increase this to 16MB by `(my-optimize-gc 16 0.5)` "
 (when *linux* (progn
 (add-to-list 'load-path (expand-file-name "~/git/org-mode/lisp"))
 (setq default-dir "~/materials")
-(setq copy-default-dir '("~/Downloads"))
+(setq copy-default-dir '("~/下载"))
+(setq helm-bibtex-pdf-open-function
+	(lambda (fpath)
+		(start-process "evince" "*helm-bibtex-evince*" "/usr/bin/evince" fpath)))
 (setq init-bib-preload-files-list '("phd.bib"))
 ))
 
