@@ -176,7 +176,8 @@ ARCHIVE is the string name of the package archive.")
     hemisu-theme
     heroku-theme
     helm-bibtex
-    ebib)
+    ebib
+    magit)
   "Don't install any Melpa packages except these packages")
 
 ;; Don't take Melpa versions of certain packages
@@ -184,8 +185,8 @@ ARCHIVE is the string name of the package archive.")
       (lambda (package version archive)
         (and
          (not (memq package '(eieio)))
-         (or (and (string-equal archive "melpa") (memq package melpa-include-packages))
-             (not (string-equal archive "melpa")))
+         (or (and (string-equal archive "melpa-stable") (memq package melpa-include-packages))
+             (not (string-equal archive "melpa-stable")))
          )))
 
 ;; un-comment below code if you prefer use all the package on melpa (unstable) without limitation
@@ -304,6 +305,7 @@ ARCHIVE is the string name of the package archive.")
 ; required by Chen Xiaoshuang
 (require-package 'helm-bibtex)
 (require-package 'ebib)
+(require-package 'magit)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (provide 'init-elpa)
