@@ -147,8 +147,7 @@ of default directory, and rename it by the `title' of bibtex"
 ;在执行helm-bibtex的时候，在默认选项中添加Show Entry in Ebib选项，快捷键是<f10>，可以直接link到ebib中该关键字的编辑部分
 (eval-after-load 'helm-bibtex
     '(progn
-        (helm-delete-action-from-source "Open PDF file (if present)" helm-source-bibtex)
-        (helm-add-action-to-source "Open PDF file (if present)" 'helm-bibtex-open-or-move helm-source-bibtex 0)
+        ;(helm-delete-action-from-source "Open PDF file (if present)" helm-source-bibtex)
         (helm-delete-action-from-source "Show Entry" helm-source-bibtex)
         (helm-add-action-to-source "Copy to Default Directory" 'copy-pdf-to-default-dir helm-source-bibtex 8)
         (helm-delete-action-from-source "Show Entry In Ebib" helm-source-bibtex)
@@ -156,7 +155,8 @@ of default directory, and rename it by the `title' of bibtex"
         (helm-delete-action-from-source "Copy Reference to ClipBoard" helm-source-bibtex)
         (helm-add-action-to-source "Copy Reference to ClipBoard" 'helm-bibtex-copy-reference helm-source-bibtex 10)
         (helm-delete-action-from-source "Copy Bibtex Entry to ClipBoard" helm-source-bibtex)
-        (helm-add-action-to-source "Copy Bibtex Entry to ClipBoard" 'helm-bibtex-copy-bibtex helm-source-bibtex 11)))
+        (helm-add-action-to-source "Copy Bibtex Entry to ClipBoard" 'helm-bibtex-copy-bibtex helm-source-bibtex 11)
+        (helm-add-action-to-source "Find and copy PDF file at default directories" 'helm-bibtex-open-or-move helm-source-bibtex 12)))
 
 ;ebib导入文献信息
 (defun ebib-import-and-save ()
